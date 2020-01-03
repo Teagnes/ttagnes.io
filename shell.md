@@ -29,16 +29,11 @@ ps -ef| grep xxx | grep -v grep | cut -c 9-15 |xargs kill -s 9
 # grep -v grep 去除含有关键字grep的进程
 # cut -c 9-15  截取第9到15个字符，进程号
 # xargs kill -s 9  将前面的结果作为kill的参数 
-# 
-
-
 
 ```
-
-
+ 简化版
 
 ```
-# 简化版
 pgrep xxx  | xargs kill -s 9
 
 ```
@@ -46,18 +41,51 @@ pgrep xxx  | xargs kill -s 9
 ### 查看nginx日志中访问时间超过n秒的记录
 
 ```
+cat access.log  | awk '{if($6>1){print $0}}END{}' | grep "" -m50
+# awk '{if($6>1){print $0}}END{}' $6 为按照空格分隔的第六个字段，即响应时间
+# grep "" -m50  展示前50行
 
 
 ```
 
 
-
-
-
-
-
+### 取消wget的代理
+使用root账户登录修改/etc/wgetrc文件，修改https_proxy=xxxx
+```
+vim /etc/wgetrc
 
 ```
 
 
+### 当前日期的前两天
+
 ```
+date -- date'2 day ago' +%Y%m%d
+
+```
+
+
+### 网络抓包
+```
+# 指定来源  xxx.xxx.xxxx.xxx  保存到/tmp/xxx.cap中
+tcpdump -i eth0 src host  xxx.xxx.xxxx.xxx /tmp/xxx.cap
+
+# 指定目标  xxx.xxx.xxxx.xxx  保存到/tmp/xxx.cap中
+tcpdump -i eth0 dst host  xxx.xxx.xxxx.xxx /tmp/xxx.cap
+
+```
+
+
+### 批量新建文件夹
+新建dir3,dir4,dir5...dir9的文件夹
+```
+mkdir /dir{3...9} 
+chown user:user   /dir{3...9}
+```
+
+
+### 查看8080端口被什么应用占用
+```
+lsof -i | grep 8080
+```
+
