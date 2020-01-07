@@ -89,3 +89,20 @@ chown user:user   /dir{3...9}
 lsof -i | grep 8080
 ```
 
+### curl
+get请求
+```
+    curl -XGET "www.baidu.com"
+
+```
+
+post请求
+```
+    curl -XPOST "www.baidu.com" -d'
+    {"name":"key","address":"value1"}
+    
+    '
+
+```
+
+
