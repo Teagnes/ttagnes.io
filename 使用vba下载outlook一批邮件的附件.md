@@ -40,7 +40,7 @@
 
    ![avatar](https://github.com/Teagnes/ttagnes.io/blob/master/images/8.PNG?raw=true>)
 
-6. #### 点击左侧的，在弹出的编辑框里输入下面的代码，注意如果outlook中的目录和保存文件的目录里如果和我的不一样，请相应的修改
+6. #### 双击左侧的thisOutlookSession，在弹出的编辑框里输入下面的代码，注意如果outlook中的目录和保存文件的目录里如果和我的不一样，请相应的修改
 
    
 
