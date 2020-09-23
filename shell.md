@@ -1,4 +1,8 @@
-## 记录用到的shell命令
+# 记录用到的shell命令
+
+## 日常维护
+
+
 
 总结日常经常使用服务器时一些排查，运维的一些命令
 
@@ -38,7 +42,7 @@ pgrep xxx  | xargs kill -s 9
 
 ```
 
-### 查看nginx日志中访问时间超过n秒的记录
+### nginx日志超时记录
 
 ```
 cat access.log  | awk '{if($6>1){print $0}}END{}' | grep "" -m50
@@ -84,30 +88,27 @@ chown user:user   /dir{3...9}
 ```
 
 
-### 查看8080端口被什么应用占用
+### 端口被占用
 ```
 lsof -i | grep 8080
 ```
 
 ### curl
-#### get请求
+#### 
 
 ```
-    curl -XGET "www.baidu.com"
+get请求
+curl -XGET "www.baidu.com"
 
-```
 
-#### post请求
-
-```
-    curl -XPOST "www.baidu.com" -d'
+curl -XPOST "www.baidu.com" -d'
     {"name":"key","address":"value1"}
-    
     '
-
 ```
 
-### 查找大文件
+
+
+### 磁盘被写满
 
 查找服务器大文件，尤其是在有项目日志打印不规范导致空间被占满时找大文件使用
 
@@ -121,6 +122,18 @@ du -h --max-depth=1 /user 2>/dev/null
 
 
 
+### 查找删除
+
+/tmp文件夹下文件太多时，使用rm命令会报`list too long`的错误
+
+```
+find -name "*" | xargs -i rm {}
+```
+
+
+
+
+
 ### vim
 
 ```
@@ -131,35 +144,42 @@ ctrl + f
 ctrl + b
 ```
 
-
-
-
-
-### top
-
-按照cup排序   P
-
-按照内存排序  M
+ 
 
 
 
 ### 压缩和解压
 
+```
 压缩文件
-
-```
 tar -zcvf  压缩文件名.tar.gz  需要压缩的文件
-```
-
-
 
 解压文件
-
-```
 tar -zxvf  需要解压的文件名.tar.gz
 ```
 
 
 
-### JAVA
+## JAVA
+
+查找cpu占用过高问题
+
+```
+top -H -p pid
+
+printf '%x\n' pid
+
+jstack pid |grep 'nid' -C5 –color
+
+# 关注各种状态的线程的个数
+cat jstack.log | grep "java.lang.Thread.State" | sort -nr | uniq -c
+
+# 查看gc
+jstat -gc pid 1000
+
+
+jmap -dump:format=b,file=filename pid  
+#  mat  工具来查看
+
+```
 
