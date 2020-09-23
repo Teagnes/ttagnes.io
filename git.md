@@ -37,6 +37,20 @@ git push origin dev:dev
 
 
 
+### 查看变动
+
+#### 未add
+
+```
+# 查看哪些文件修改了
+git status
+
+# 一般ide里都可以直接看到，如果已经add了就看不到了
+git diff filename
+```
+
+
+
 
 
 ### 一般开发流程
@@ -48,7 +62,7 @@ git push origin dev:dev
 - 拉取分支到本地
 
   ```shell
-  git branch --track origin/dev
+  git checkout --track origin/dev
   ```
 
   
