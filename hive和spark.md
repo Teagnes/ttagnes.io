@@ -32,5 +32,5 @@ alter table  tablename drop  partition(dt<=20200101);
 get_json_object(jsonstr,'$.colname')
 ```
 
-
+注意大小写，这里的json字段是大小写敏感的
 
