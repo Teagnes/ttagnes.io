@@ -160,6 +160,28 @@ tar -zxvf  需要解压的文件名.tar.gz
 
 
 
+
+
+### sort -hr
+
+```
+du | sort -hr
+
+
+参考
+https://blog.csdn.net/shuanghujushi/article/details/51344215
+```
+
+
+
+
+
+
+
+
+
+
+
 ## JAVA
 
 查找cpu占用过高问题
